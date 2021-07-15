@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text, Alert } from 'react-native';
+import PopupButton from './components/PopupButton';
 
 export default function App() {
+  const CustomAlert = () => {
+    Alert.alert('로그인 페이지에서 구현된 팝업!');
+  };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.contianer}>
+      <Text> SignInPage </Text>
+
+      <PopupButton CustomAlert={CustomAlert} title={'로그인페이지 팝업'} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contianer: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
