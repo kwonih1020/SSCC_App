@@ -1,17 +1,34 @@
-import React from 'react';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Alert, ScrollView } from 'react-native';
 import PopupButton from './components/PopupButton';
+import data from './data.json';
+const tempList = [
+  { title: 1 },
+  { title: 2 },
+  { title: 3 },
+  { title: 4 },
+  { title: 5 },
+];
 
 export default function App() {
-  const CustomAlert = () => {
-    Alert.alert('로그인 페이지에서 구현된 팝업!');
-  };
-  return (
-    <View style={styles.contianer}>
-      <Text> SignInPage </Text>
+  const [state, setState] = useState(tempList);
 
-      <PopupButton CustomAlert={CustomAlert} title={'로그인페이지 팝업'} />
-    </View>
+  useEffect(() => {
+    setTimeout(() => {
+      setState(data.diary);
+    }, 5000);
+  }, []);
+
+  return (
+    <ScrollView contentContainerStyle={styles.contianer}>
+      {state.map((content, i) => {
+        return (
+          <View key={i}>
+            <Text>{content.title}</Text>
+          </View>
+        );
+      })}
+    </ScrollView>
   );
 }
 
